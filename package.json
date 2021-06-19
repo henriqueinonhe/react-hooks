@@ -1,8 +1,9 @@
 {
-  "name": "react-hooks",
+  "name": "@henriqueinonhe/react-hooks",
   "version": "1.0.0",
   "description": "General purpose React hooks.",
-  "main": "/dist/index.js",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/henriqueinonhe/react-hooks.git"
@@ -23,12 +24,11 @@
   "files": [
     "dist"
   ],
-  "peerDependencies": {
-    "react": "^17.0.2"
-  },
   "devDependencies": {
     "@types/react": "^17.0.11",
     "typescript": "^4.3.4"
   },
-  "types": "/dist/index.d.ts"
+  "peerDependencies": {
+    "react": "^17.0.2"
+  }
 }
