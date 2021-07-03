@@ -11,3 +11,28 @@ export function useIsMounted() : React.MutableRefObject<boolean> {
 
   return isMounted;
 }
+
+export async function asyncCallback<T>(isMounted : ReturnType<typeof useRef>,
+                                    asyncPart : () => Promise<T>,
+                                    syncPart : (value : T) => void,
+                                    setIsLoading ?: React.Dispatch<React.SetStateAction<boolean>> | 
+                                                    Array<React.Dispatch<React.SetStateAction<boolean>>>) : Promise<void> {
+  if(Array.isArray(setIsLoading)) {
+    setIsLoading.forEach(setter => setter(true));
+  }
+  else if(setIsLoading) {
+    setIsLoading(true);
+  }
+
+  const result = await asyncPart();
+  if(isMounted.current) {
+    syncPart(result);
+  }
+
+  if(Array.isArray(setIsLoading)) {
+    setIsLoading.forEach(setter => setter(false));
+  }
+  else if(setIsLoading) {
+    setIsLoading(false);
+  }
+}
