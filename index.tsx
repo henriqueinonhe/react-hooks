@@ -45,5 +45,5 @@ export function useAsync<T>(isMounted : ReturnType<typeof useRef>,
                                             Array<React.Dispatch<React.SetStateAction<boolean>>>) : void {
   useEffect(() => {
     asyncCallback(isMounted, asyncPart, syncPart, setIsLoading);
-  }), deps;
+  }, deps);
 }
